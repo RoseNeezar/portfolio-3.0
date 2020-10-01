@@ -1,9 +1,10 @@
-import React from "react"
+import React, { FC } from "react"
 // import "../css/main.css"
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import Footer from "./Footer"
-const Layout = ({ children }) => {
+interface ILayout {}
+const Layout: FC<ILayout> = ({ children }) => {
   return (
     <>
       <Navbar />
