@@ -37,7 +37,7 @@ const tempLinks = data.map(link => {
 })
 // I KNOW WE CAN COMBINE IT !!!!!
 
-export default ({ styleClass }) => {
+export default ({ styleClass }: any) => {
   return (
     <ul className={`page-links ${styleClass ? styleClass : ""}`}>
       {tempLinks}
