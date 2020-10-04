@@ -18,6 +18,10 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-typescript`,
     {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {},
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `assets`,
