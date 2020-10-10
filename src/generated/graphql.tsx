@@ -1373,6 +1373,8 @@ export type Query = {
   allImageSharp: ImageSharpConnection;
   strapiAbout?: Maybe<StrapiAbout>;
   allStrapiAbout: StrapiAboutConnection;
+  strapiProjects?: Maybe<StrapiProjects>;
+  allStrapiProjects: StrapiProjectsConnection;
   strapiJobs?: Maybe<StrapiJobs>;
   allStrapiJobs: StrapiJobsConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
@@ -1573,6 +1575,32 @@ export type QueryAllStrapiAboutArgs = {
 };
 
 
+export type QueryStrapiProjectsArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  github?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  featured?: Maybe<BooleanQueryOperatorInput>;
+  created_at?: Maybe<DateQueryOperatorInput>;
+  updated_at?: Maybe<DateQueryOperatorInput>;
+  stack?: Maybe<StrapiProjectsStackFilterListInput>;
+  image?: Maybe<FileFilterInput>;
+  strapiId?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllStrapiProjectsArgs = {
+  filter?: Maybe<StrapiProjectsFilterInput>;
+  sort?: Maybe<StrapiProjectsSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
 export type QueryStrapiJobsArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1623,6 +1651,7 @@ export type QuerySitePluginArgs = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -2155,6 +2184,7 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___singleTypes = 'pluginCreator___pluginOptions___singleTypes',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
   pluginCreator___pluginFilepath = 'pluginCreator___pluginFilepath',
   pluginCreator___packageJson___name = 'pluginCreator___packageJson___name',
@@ -2218,6 +2248,7 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars['String']>;
   pluginOptions?: Maybe<SitePluginPluginOptions>;
   nodeAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   pluginFilepath?: Maybe<Scalars['String']>;
   packageJson?: Maybe<SitePluginPackageJson>;
@@ -2350,6 +2381,7 @@ export enum SitePluginFieldsEnum {
   pluginOptions___singleTypes = 'pluginOptions___singleTypes',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
+  browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
   pluginFilepath = 'pluginFilepath',
   packageJson___name = 'packageJson___name',
@@ -2379,6 +2411,7 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -3037,6 +3070,355 @@ export type StrapiJobsSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type StrapiProjects = Node & {
+  __typename?: 'StrapiProjects';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  github?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  featured?: Maybe<Scalars['Boolean']>;
+  created_at?: Maybe<Scalars['Date']>;
+  updated_at?: Maybe<Scalars['Date']>;
+  stack?: Maybe<Array<Maybe<StrapiProjectsStack>>>;
+  image?: Maybe<File>;
+  strapiId?: Maybe<Scalars['Int']>;
+};
+
+
+export type StrapiProjectsCreated_AtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type StrapiProjectsUpdated_AtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type StrapiProjectsConnection = {
+  __typename?: 'StrapiProjectsConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<StrapiProjectsEdge>;
+  nodes: Array<StrapiProjects>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<StrapiProjectsGroupConnection>;
+};
+
+
+export type StrapiProjectsConnectionDistinctArgs = {
+  field: StrapiProjectsFieldsEnum;
+};
+
+
+export type StrapiProjectsConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: StrapiProjectsFieldsEnum;
+};
+
+export type StrapiProjectsEdge = {
+  __typename?: 'StrapiProjectsEdge';
+  next?: Maybe<StrapiProjects>;
+  node: StrapiProjects;
+  previous?: Maybe<StrapiProjects>;
+};
+
+export enum StrapiProjectsFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  title = 'title',
+  description = 'description',
+  github = 'github',
+  url = 'url',
+  featured = 'featured',
+  created_at = 'created_at',
+  updated_at = 'updated_at',
+  stack = 'stack',
+  stack___id = 'stack___id',
+  stack___title = 'stack___title',
+  image___sourceInstanceName = 'image___sourceInstanceName',
+  image___absolutePath = 'image___absolutePath',
+  image___relativePath = 'image___relativePath',
+  image___extension = 'image___extension',
+  image___size = 'image___size',
+  image___prettySize = 'image___prettySize',
+  image___modifiedTime = 'image___modifiedTime',
+  image___accessTime = 'image___accessTime',
+  image___changeTime = 'image___changeTime',
+  image___birthTime = 'image___birthTime',
+  image___root = 'image___root',
+  image___dir = 'image___dir',
+  image___base = 'image___base',
+  image___ext = 'image___ext',
+  image___name = 'image___name',
+  image___relativeDirectory = 'image___relativeDirectory',
+  image___dev = 'image___dev',
+  image___mode = 'image___mode',
+  image___nlink = 'image___nlink',
+  image___uid = 'image___uid',
+  image___gid = 'image___gid',
+  image___rdev = 'image___rdev',
+  image___ino = 'image___ino',
+  image___atimeMs = 'image___atimeMs',
+  image___mtimeMs = 'image___mtimeMs',
+  image___ctimeMs = 'image___ctimeMs',
+  image___atime = 'image___atime',
+  image___mtime = 'image___mtime',
+  image___ctime = 'image___ctime',
+  image___birthtime = 'image___birthtime',
+  image___birthtimeMs = 'image___birthtimeMs',
+  image___blksize = 'image___blksize',
+  image___blocks = 'image___blocks',
+  image___publicURL = 'image___publicURL',
+  image___childImageSharp___fixed___base64 = 'image___childImageSharp___fixed___base64',
+  image___childImageSharp___fixed___tracedSVG = 'image___childImageSharp___fixed___tracedSVG',
+  image___childImageSharp___fixed___aspectRatio = 'image___childImageSharp___fixed___aspectRatio',
+  image___childImageSharp___fixed___width = 'image___childImageSharp___fixed___width',
+  image___childImageSharp___fixed___height = 'image___childImageSharp___fixed___height',
+  image___childImageSharp___fixed___src = 'image___childImageSharp___fixed___src',
+  image___childImageSharp___fixed___srcSet = 'image___childImageSharp___fixed___srcSet',
+  image___childImageSharp___fixed___srcWebp = 'image___childImageSharp___fixed___srcWebp',
+  image___childImageSharp___fixed___srcSetWebp = 'image___childImageSharp___fixed___srcSetWebp',
+  image___childImageSharp___fixed___originalName = 'image___childImageSharp___fixed___originalName',
+  image___childImageSharp___resolutions___base64 = 'image___childImageSharp___resolutions___base64',
+  image___childImageSharp___resolutions___tracedSVG = 'image___childImageSharp___resolutions___tracedSVG',
+  image___childImageSharp___resolutions___aspectRatio = 'image___childImageSharp___resolutions___aspectRatio',
+  image___childImageSharp___resolutions___width = 'image___childImageSharp___resolutions___width',
+  image___childImageSharp___resolutions___height = 'image___childImageSharp___resolutions___height',
+  image___childImageSharp___resolutions___src = 'image___childImageSharp___resolutions___src',
+  image___childImageSharp___resolutions___srcSet = 'image___childImageSharp___resolutions___srcSet',
+  image___childImageSharp___resolutions___srcWebp = 'image___childImageSharp___resolutions___srcWebp',
+  image___childImageSharp___resolutions___srcSetWebp = 'image___childImageSharp___resolutions___srcSetWebp',
+  image___childImageSharp___resolutions___originalName = 'image___childImageSharp___resolutions___originalName',
+  image___childImageSharp___fluid___base64 = 'image___childImageSharp___fluid___base64',
+  image___childImageSharp___fluid___tracedSVG = 'image___childImageSharp___fluid___tracedSVG',
+  image___childImageSharp___fluid___aspectRatio = 'image___childImageSharp___fluid___aspectRatio',
+  image___childImageSharp___fluid___src = 'image___childImageSharp___fluid___src',
+  image___childImageSharp___fluid___srcSet = 'image___childImageSharp___fluid___srcSet',
+  image___childImageSharp___fluid___srcWebp = 'image___childImageSharp___fluid___srcWebp',
+  image___childImageSharp___fluid___srcSetWebp = 'image___childImageSharp___fluid___srcSetWebp',
+  image___childImageSharp___fluid___sizes = 'image___childImageSharp___fluid___sizes',
+  image___childImageSharp___fluid___originalImg = 'image___childImageSharp___fluid___originalImg',
+  image___childImageSharp___fluid___originalName = 'image___childImageSharp___fluid___originalName',
+  image___childImageSharp___fluid___presentationWidth = 'image___childImageSharp___fluid___presentationWidth',
+  image___childImageSharp___fluid___presentationHeight = 'image___childImageSharp___fluid___presentationHeight',
+  image___childImageSharp___sizes___base64 = 'image___childImageSharp___sizes___base64',
+  image___childImageSharp___sizes___tracedSVG = 'image___childImageSharp___sizes___tracedSVG',
+  image___childImageSharp___sizes___aspectRatio = 'image___childImageSharp___sizes___aspectRatio',
+  image___childImageSharp___sizes___src = 'image___childImageSharp___sizes___src',
+  image___childImageSharp___sizes___srcSet = 'image___childImageSharp___sizes___srcSet',
+  image___childImageSharp___sizes___srcWebp = 'image___childImageSharp___sizes___srcWebp',
+  image___childImageSharp___sizes___srcSetWebp = 'image___childImageSharp___sizes___srcSetWebp',
+  image___childImageSharp___sizes___sizes = 'image___childImageSharp___sizes___sizes',
+  image___childImageSharp___sizes___originalImg = 'image___childImageSharp___sizes___originalImg',
+  image___childImageSharp___sizes___originalName = 'image___childImageSharp___sizes___originalName',
+  image___childImageSharp___sizes___presentationWidth = 'image___childImageSharp___sizes___presentationWidth',
+  image___childImageSharp___sizes___presentationHeight = 'image___childImageSharp___sizes___presentationHeight',
+  image___childImageSharp___original___width = 'image___childImageSharp___original___width',
+  image___childImageSharp___original___height = 'image___childImageSharp___original___height',
+  image___childImageSharp___original___src = 'image___childImageSharp___original___src',
+  image___childImageSharp___resize___src = 'image___childImageSharp___resize___src',
+  image___childImageSharp___resize___tracedSVG = 'image___childImageSharp___resize___tracedSVG',
+  image___childImageSharp___resize___width = 'image___childImageSharp___resize___width',
+  image___childImageSharp___resize___height = 'image___childImageSharp___resize___height',
+  image___childImageSharp___resize___aspectRatio = 'image___childImageSharp___resize___aspectRatio',
+  image___childImageSharp___resize___originalName = 'image___childImageSharp___resize___originalName',
+  image___childImageSharp___id = 'image___childImageSharp___id',
+  image___childImageSharp___parent___id = 'image___childImageSharp___parent___id',
+  image___childImageSharp___parent___children = 'image___childImageSharp___parent___children',
+  image___childImageSharp___children = 'image___childImageSharp___children',
+  image___childImageSharp___children___id = 'image___childImageSharp___children___id',
+  image___childImageSharp___children___children = 'image___childImageSharp___children___children',
+  image___childImageSharp___internal___content = 'image___childImageSharp___internal___content',
+  image___childImageSharp___internal___contentDigest = 'image___childImageSharp___internal___contentDigest',
+  image___childImageSharp___internal___description = 'image___childImageSharp___internal___description',
+  image___childImageSharp___internal___fieldOwners = 'image___childImageSharp___internal___fieldOwners',
+  image___childImageSharp___internal___ignoreType = 'image___childImageSharp___internal___ignoreType',
+  image___childImageSharp___internal___mediaType = 'image___childImageSharp___internal___mediaType',
+  image___childImageSharp___internal___owner = 'image___childImageSharp___internal___owner',
+  image___childImageSharp___internal___type = 'image___childImageSharp___internal___type',
+  image___id = 'image___id',
+  image___parent___id = 'image___parent___id',
+  image___parent___parent___id = 'image___parent___parent___id',
+  image___parent___parent___children = 'image___parent___parent___children',
+  image___parent___children = 'image___parent___children',
+  image___parent___children___id = 'image___parent___children___id',
+  image___parent___children___children = 'image___parent___children___children',
+  image___parent___internal___content = 'image___parent___internal___content',
+  image___parent___internal___contentDigest = 'image___parent___internal___contentDigest',
+  image___parent___internal___description = 'image___parent___internal___description',
+  image___parent___internal___fieldOwners = 'image___parent___internal___fieldOwners',
+  image___parent___internal___ignoreType = 'image___parent___internal___ignoreType',
+  image___parent___internal___mediaType = 'image___parent___internal___mediaType',
+  image___parent___internal___owner = 'image___parent___internal___owner',
+  image___parent___internal___type = 'image___parent___internal___type',
+  image___children = 'image___children',
+  image___children___id = 'image___children___id',
+  image___children___parent___id = 'image___children___parent___id',
+  image___children___parent___children = 'image___children___parent___children',
+  image___children___children = 'image___children___children',
+  image___children___children___id = 'image___children___children___id',
+  image___children___children___children = 'image___children___children___children',
+  image___children___internal___content = 'image___children___internal___content',
+  image___children___internal___contentDigest = 'image___children___internal___contentDigest',
+  image___children___internal___description = 'image___children___internal___description',
+  image___children___internal___fieldOwners = 'image___children___internal___fieldOwners',
+  image___children___internal___ignoreType = 'image___children___internal___ignoreType',
+  image___children___internal___mediaType = 'image___children___internal___mediaType',
+  image___children___internal___owner = 'image___children___internal___owner',
+  image___children___internal___type = 'image___children___internal___type',
+  image___internal___content = 'image___internal___content',
+  image___internal___contentDigest = 'image___internal___contentDigest',
+  image___internal___description = 'image___internal___description',
+  image___internal___fieldOwners = 'image___internal___fieldOwners',
+  image___internal___ignoreType = 'image___internal___ignoreType',
+  image___internal___mediaType = 'image___internal___mediaType',
+  image___internal___owner = 'image___internal___owner',
+  image___internal___type = 'image___internal___type',
+  strapiId = 'strapiId'
+}
+
+export type StrapiProjectsFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  github?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  featured?: Maybe<BooleanQueryOperatorInput>;
+  created_at?: Maybe<DateQueryOperatorInput>;
+  updated_at?: Maybe<DateQueryOperatorInput>;
+  stack?: Maybe<StrapiProjectsStackFilterListInput>;
+  image?: Maybe<FileFilterInput>;
+  strapiId?: Maybe<IntQueryOperatorInput>;
+};
+
+export type StrapiProjectsGroupConnection = {
+  __typename?: 'StrapiProjectsGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<StrapiProjectsEdge>;
+  nodes: Array<StrapiProjects>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type StrapiProjectsSortInput = {
+  fields?: Maybe<Array<Maybe<StrapiProjectsFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type StrapiProjectsStack = {
+  __typename?: 'StrapiProjectsStack';
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type StrapiProjectsStackFilterInput = {
+  id?: Maybe<IntQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type StrapiProjectsStackFilterListInput = {
+  elemMatch?: Maybe<StrapiProjectsStackFilterInput>;
+};
+
 export type StringQueryOperatorInput = {
   eq?: Maybe<Scalars['String']>;
   ne?: Maybe<Scalars['String']>;
@@ -3238,6 +3620,65 @@ export type AllStrapiJobsQuery = (
   ) }
 );
 
+export type AllStrapiProjectsFeatureQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllStrapiProjectsFeatureQuery = (
+  { __typename?: 'Query' }
+  & { allStrapiProjects: (
+    { __typename?: 'StrapiProjectsConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiProjects' }
+      & RegularStrapiProjectFragment
+    )> }
+  ) }
+);
+
+export type RegularStrapiProjectFragment = (
+  { __typename?: 'StrapiProjects' }
+  & Pick<StrapiProjects, 'github' | 'id' | 'description' | 'title' | 'url'>
+  & { image?: Maybe<(
+    { __typename?: 'File' }
+    & { childImageSharp?: Maybe<(
+      { __typename?: 'ImageSharp' }
+      & { fluid?: Maybe<(
+        { __typename?: 'ImageSharpFluid' }
+        & GatsbyImageSharpFluidFragment
+      )> }
+    )> }
+  )>, stack?: Maybe<Array<Maybe<(
+    { __typename?: 'StrapiProjectsStack' }
+    & Pick<StrapiProjectsStack, 'id' | 'title'>
+  )>>> }
+);
+
+export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_3_Query = (
+  { __typename?: 'Query' }
+  & { allStrapiProjects: (
+    { __typename?: 'StrapiProjectsConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiProjects' }
+      & Pick<StrapiProjects, 'github' | 'id' | 'description' | 'title' | 'url'>
+      & { image?: Maybe<(
+        { __typename?: 'File' }
+        & { childImageSharp?: Maybe<(
+          { __typename?: 'ImageSharp' }
+          & { fluid?: Maybe<(
+            { __typename?: 'ImageSharpFluid' }
+            & GatsbyImageSharpFluidFragment
+          )> }
+        )> }
+      )>, stack?: Maybe<Array<Maybe<(
+        { __typename?: 'StrapiProjectsStack' }
+        & Pick<StrapiProjectsStack, 'id' | 'title'>
+      )>>> }
+    )> }
+  ) }
+);
+
 export const GatsbyImageSharpFixedFragmentDoc = gql`
     fragment GatsbyImageSharpFixed on ImageSharpFixed {
   base64
@@ -3294,15 +3735,6 @@ export const GatsbyImageSharpFixed_WithWebp_NoBase64FragmentDoc = gql`
   srcSet
   srcWebp
   srcSetWebp
-}
-    `;
-export const GatsbyImageSharpFluidFragmentDoc = gql`
-    fragment GatsbyImageSharpFluid on ImageSharpFluid {
-  base64
-  aspectRatio
-  src
-  srcSet
-  sizes
 }
     `;
 export const GatsbyImageSharpFluidLimitPresentationSizeFragmentDoc = gql`
@@ -3476,6 +3908,35 @@ export const GatsbyImageSharpSizes_WithWebp_NoBase64FragmentDoc = gql`
   sizes
 }
     `;
+export const GatsbyImageSharpFluidFragmentDoc = gql`
+    fragment GatsbyImageSharpFluid on ImageSharpFluid {
+  base64
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+    `;
+export const RegularStrapiProjectFragmentDoc = gql`
+    fragment RegularStrapiProject on StrapiProjects {
+  github
+  id
+  description
+  title
+  url
+  image {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+  stack {
+    id
+    title
+  }
+}
+    ${GatsbyImageSharpFluidFragmentDoc}`;
 export const PagesQueryDocument = gql`
     query PagesQuery {
   allSitePage(filter: {path: {ne: "/dev-404-page/"}}) {
@@ -3563,3 +4024,43 @@ export function useAllStrapiJobsLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type AllStrapiJobsQueryHookResult = ReturnType<typeof useAllStrapiJobsQuery>;
 export type AllStrapiJobsLazyQueryHookResult = ReturnType<typeof useAllStrapiJobsLazyQuery>;
 export type AllStrapiJobsQueryResult = ApolloReactCommon.QueryResult<AllStrapiJobsQuery, AllStrapiJobsQueryVariables>;
+export const AllStrapiProjectsFeatureDocument = gql`
+    query allStrapiProjectsFeature {
+  allStrapiProjects(filter: {featured: {eq: true}}) {
+    nodes {
+      ...RegularStrapiProject
+    }
+  }
+}
+    ${RegularStrapiProjectFragmentDoc}`;
+export type AllStrapiProjectsFeatureComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>, 'query'>;
+
+    export const AllStrapiProjectsFeatureComponent = (props: AllStrapiProjectsFeatureComponentProps) => (
+      <ApolloReactComponents.Query<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables> query={AllStrapiProjectsFeatureDocument} {...props} />
+    );
+    
+
+/**
+ * __useAllStrapiProjectsFeatureQuery__
+ *
+ * To run a query within a React component, call `useAllStrapiProjectsFeatureQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllStrapiProjectsFeatureQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllStrapiProjectsFeatureQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllStrapiProjectsFeatureQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>) {
+        return ApolloReactHooks.useQuery<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>(AllStrapiProjectsFeatureDocument, baseOptions);
+      }
+export function useAllStrapiProjectsFeatureLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>(AllStrapiProjectsFeatureDocument, baseOptions);
+        }
+export type AllStrapiProjectsFeatureQueryHookResult = ReturnType<typeof useAllStrapiProjectsFeatureQuery>;
+export type AllStrapiProjectsFeatureLazyQueryHookResult = ReturnType<typeof useAllStrapiProjectsFeatureLazyQuery>;
+export type AllStrapiProjectsFeatureQueryResult = ApolloReactCommon.QueryResult<AllStrapiProjectsFeatureQuery, AllStrapiProjectsFeatureQueryVariables>;

@@ -1,0 +1,18 @@
+fragment RegularStrapiProject on StrapiProjects {
+  github
+  id
+  description
+  title
+  url
+  image {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+  stack {
+    id
+    title
+  }
+}

@@ -1,0 +1,7 @@
+query allStrapiProjectsFeature {
+  allStrapiProjects(filter: { featured: { eq: true } }) {
+    nodes {
+      ...RegularStrapiProject
+    }
+  }
+}

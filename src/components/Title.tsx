@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 
 interface ITitle {
-  title: string
+  title?: string
 }
 const Title: FC<ITitle> = ({ title }) => {
   return (
