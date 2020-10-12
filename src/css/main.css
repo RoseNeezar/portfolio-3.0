@@ -40,7 +40,7 @@ Variables
   --clr-white: #fff;
   --ff-primary: "Roboto", sans-serif;
   --ff-secondary: "Open Sans", sans-serif;
-  --transition: all 0.3s linear;
+  --transition: all 0.15s linear;
   --spacing: 0.2rem;
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -246,6 +246,7 @@ Navbar
 .nav-links {
   display: none;
 }
+
 @media screen and (min-width: 768px) {
   .toggle-btn {
     display: none;
@@ -267,7 +268,7 @@ Navbar
   }
   .nav-links a:hover {
     color: var(--clr-primary-5);
-    box-shadow: 0px 2px var(--clr-primary-5);
+    /* box-shadow: 0px 2px var(--clr-primary-5); */
   }
   .nav-center {
     display: grid;

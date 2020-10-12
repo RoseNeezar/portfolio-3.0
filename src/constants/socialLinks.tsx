@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import {
   FaFacebookSquare,
   FaLinkedin,
@@ -8,6 +8,9 @@ import {
   FaGithub,
 } from "react-icons/fa"
 
+interface ISocial {
+  styleClass?: "footer-links" | "sidebar-icons"
+}
 const data = [
   {
     id: 1,
@@ -45,8 +48,18 @@ const links = data.map(link => {
   )
 })
 
-export default ({ styleClass }: any) => {
+const socialLinks: FC<ISocial> = ({ styleClass }) => {
   return (
-    <ul className={`social-links ${styleClass ? styleClass : ""}`}>{links}</ul>
+    <ul
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+      className={`social-links ${styleClass ? styleClass : ""}`}
+    >
+      {links}
+    </ul>
   )
 }
+
+export default socialLinks

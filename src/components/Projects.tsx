@@ -19,7 +19,7 @@ const Projects: FC<IProject> = ({ projects, title, showLink }) => {
         })}
       </div>
       {showLink && (
-        <Link to="/project" className="btn center-btn">
+        <Link to="/projects" className="btn center-btn">
           projects
         </Link>
       )}

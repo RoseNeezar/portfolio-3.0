@@ -1,0 +1,9 @@
+fragment RegularStrapiAbout on StrapiAbout {
+  id
+  info
+  title
+  stack {
+    id
+    title
+  }
+}

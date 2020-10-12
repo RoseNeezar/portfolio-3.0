@@ -1,0 +1,7 @@
+query allStrapiAbout {
+  allStrapiAbout {
+    nodes {
+      ...RegularStrapiAbout
+    }
+  }
+}

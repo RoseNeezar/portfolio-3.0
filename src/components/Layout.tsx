@@ -1,14 +1,24 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 // import "../css/main.css"
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import Footer from "./Footer"
-interface ILayout {}
-const Layout: FC<ILayout> = ({ children }) => {
+import { colorE } from "../constants/colorEnum"
+
+interface ILayout {
+  navColor?: colorE
+}
+const Layout: FC<ILayout> = ({ children, navColor }) => {
+  const [openSidebar, setOpenSidebar] = useState(false)
+  const toggle = () => {
+    setOpenSidebar(!openSidebar)
+  }
   return (
     <>
-      <Navbar />
+      <Navbar navColor={navColor} toggle={toggle} />
+      <Sidebar isOpen={openSidebar} toggle={toggle} />
       {children}
+      <Footer />
     </>
   )
 }

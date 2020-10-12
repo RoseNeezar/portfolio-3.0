@@ -4,6 +4,17 @@ import { Link } from "gatsby"
 import { graphql, useStaticQuery } from "gatsby"
 import SocialLinks from "../constants/socialLinks"
 import styled from "styled-components"
+import Lottie from "react-lottie"
+import animationData from "../constants/hero-white.json"
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+}
 
 const Underline = styled.div`
   width: 5rem;
@@ -32,7 +43,7 @@ const Header = styled.header`
       left: 65%;
       right: 0;
       bottom: 0;
-      background: ${({ theme }) => theme.clrWhite};
+      background: ${({ theme }) => theme.clrPrimary10};
     }
     h4 {
       font-size: 0.85rem;
@@ -93,7 +104,15 @@ const Hero = () => {
             <SocialLinks />
           </div>
         </article>
-        <Image fluid={fluid} className="hero-img" />
+        <div className="hero-img">
+          <Lottie
+            options={defaultOptions}
+            height={500}
+            width={500}
+            speed={2.5}
+            isStopped={false}
+          />
+        </div>
       </Section>
     </Header>
   )
