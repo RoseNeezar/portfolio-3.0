@@ -6,16 +6,19 @@ import { colorE } from "../constants/colorEnum"
 
 const Error = () => {
   return (
-    <Layout navColor={colorE.green}>
-      <main className="error-page">
-        <div className="error-container">
-          <h1>nothing to see here</h1>
-          <Link to="/" className="btn">
-            Go Home
-          </Link>
-        </div>
-      </main>
-    </Layout>
+    <>
+      <SEO title="Empty" description="Nothing to see here" />
+      <Layout navColor={colorE.green}>
+        <main className="error-page">
+          <div className="error-container">
+            <h1>nothing to see here</h1>
+            <Link to="/" className="btn">
+              Go Home
+            </Link>
+          </div>
+        </main>
+      </Layout>
+    </>
   )
 }
 
