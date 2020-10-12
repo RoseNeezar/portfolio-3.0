@@ -1562,6 +1562,7 @@ export type QueryStrapiAboutArgs = {
   info?: Maybe<StringQueryOperatorInput>;
   created_at?: Maybe<DateQueryOperatorInput>;
   updated_at?: Maybe<DateQueryOperatorInput>;
+  stack?: Maybe<StrapiAboutStackFilterListInput>;
   image?: Maybe<FileFilterInput>;
   strapiId?: Maybe<IntQueryOperatorInput>;
 };
@@ -2558,6 +2559,7 @@ export type StrapiAbout = Node & {
   info?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['Date']>;
   updated_at?: Maybe<Scalars['Date']>;
+  stack?: Maybe<Array<Maybe<StrapiAboutStack>>>;
   image?: Maybe<File>;
   strapiId?: Maybe<Scalars['Int']>;
 };
@@ -2698,6 +2700,9 @@ export enum StrapiAboutFieldsEnum {
   info = 'info',
   created_at = 'created_at',
   updated_at = 'updated_at',
+  stack = 'stack',
+  stack___id = 'stack___id',
+  stack___title = 'stack___title',
   image___sourceInstanceName = 'image___sourceInstanceName',
   image___absolutePath = 'image___absolutePath',
   image___relativePath = 'image___relativePath',
@@ -2849,6 +2854,7 @@ export type StrapiAboutFilterInput = {
   info?: Maybe<StringQueryOperatorInput>;
   created_at?: Maybe<DateQueryOperatorInput>;
   updated_at?: Maybe<DateQueryOperatorInput>;
+  stack?: Maybe<StrapiAboutStackFilterListInput>;
   image?: Maybe<FileFilterInput>;
   strapiId?: Maybe<IntQueryOperatorInput>;
 };
@@ -2866,6 +2872,21 @@ export type StrapiAboutGroupConnection = {
 export type StrapiAboutSortInput = {
   fields?: Maybe<Array<Maybe<StrapiAboutFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type StrapiAboutStack = {
+  __typename?: 'StrapiAboutStack';
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type StrapiAboutStackFilterInput = {
+  id?: Maybe<IntQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type StrapiAboutStackFilterListInput = {
+  elemMatch?: Maybe<StrapiAboutStackFilterInput>;
 };
 
 export type StrapiJobs = Node & {
@@ -3620,6 +3641,34 @@ export type AllStrapiJobsQuery = (
   ) }
 );
 
+export type AllStrapiProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllStrapiProjectsQuery = (
+  { __typename?: 'Query' }
+  & { allStrapiProjects: (
+    { __typename?: 'StrapiProjectsConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiProjects' }
+      & RegularStrapiProjectFragment
+    )> }
+  ) }
+);
+
+export type AllStrapiAboutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllStrapiAboutQuery = (
+  { __typename?: 'Query' }
+  & { allStrapiAbout: (
+    { __typename?: 'StrapiAboutConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiAbout' }
+      & RegularStrapiAboutFragment
+    )> }
+  ) }
+);
+
 export type AllStrapiProjectsFeatureQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3632,6 +3681,15 @@ export type AllStrapiProjectsFeatureQuery = (
       & RegularStrapiProjectFragment
     )> }
   ) }
+);
+
+export type RegularStrapiAboutFragment = (
+  { __typename?: 'StrapiAbout' }
+  & Pick<StrapiAbout, 'id' | 'info' | 'title'>
+  & { stack?: Maybe<Array<Maybe<(
+    { __typename?: 'StrapiAboutStack' }
+    & Pick<StrapiAboutStack, 'id' | 'title'>
+  )>>> }
 );
 
 export type RegularStrapiProjectFragment = (
@@ -3656,6 +3714,51 @@ export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type Unnamed_3_Query = (
+  { __typename?: 'Query' }
+  & { allStrapiAbout: (
+    { __typename?: 'StrapiAboutConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiAbout' }
+      & Pick<StrapiAbout, 'id' | 'info' | 'title'>
+      & { stack?: Maybe<Array<Maybe<(
+        { __typename?: 'StrapiAboutStack' }
+        & Pick<StrapiAboutStack, 'id' | 'title'>
+      )>>> }
+    )> }
+  ) }
+);
+
+export type Unnamed_4_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_4_Query = (
+  { __typename?: 'Query' }
+  & { allStrapiProjects: (
+    { __typename?: 'StrapiProjectsConnection' }
+    & { nodes: Array<(
+      { __typename?: 'StrapiProjects' }
+      & Pick<StrapiProjects, 'github' | 'id' | 'description' | 'title' | 'url'>
+      & { image?: Maybe<(
+        { __typename?: 'File' }
+        & { childImageSharp?: Maybe<(
+          { __typename?: 'ImageSharp' }
+          & { fluid?: Maybe<(
+            { __typename?: 'ImageSharpFluid' }
+            & GatsbyImageSharpFluidFragment
+          )> }
+        )> }
+      )>, stack?: Maybe<Array<Maybe<(
+        { __typename?: 'StrapiProjectsStack' }
+        & Pick<StrapiProjectsStack, 'id' | 'title'>
+      )>>> }
+    )> }
+  ) }
+);
+
+export type Unnamed_5_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_5_Query = (
   { __typename?: 'Query' }
   & { allStrapiProjects: (
     { __typename?: 'StrapiProjectsConnection' }
@@ -3908,6 +4011,17 @@ export const GatsbyImageSharpSizes_WithWebp_NoBase64FragmentDoc = gql`
   sizes
 }
     `;
+export const RegularStrapiAboutFragmentDoc = gql`
+    fragment RegularStrapiAbout on StrapiAbout {
+  id
+  info
+  title
+  stack {
+    id
+    title
+  }
+}
+    `;
 export const GatsbyImageSharpFluidFragmentDoc = gql`
     fragment GatsbyImageSharpFluid on ImageSharpFluid {
   base64
@@ -4024,6 +4138,86 @@ export function useAllStrapiJobsLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type AllStrapiJobsQueryHookResult = ReturnType<typeof useAllStrapiJobsQuery>;
 export type AllStrapiJobsLazyQueryHookResult = ReturnType<typeof useAllStrapiJobsLazyQuery>;
 export type AllStrapiJobsQueryResult = ApolloReactCommon.QueryResult<AllStrapiJobsQuery, AllStrapiJobsQueryVariables>;
+export const AllStrapiProjectsDocument = gql`
+    query allStrapiProjects {
+  allStrapiProjects {
+    nodes {
+      ...RegularStrapiProject
+    }
+  }
+}
+    ${RegularStrapiProjectFragmentDoc}`;
+export type AllStrapiProjectsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>, 'query'>;
+
+    export const AllStrapiProjectsComponent = (props: AllStrapiProjectsComponentProps) => (
+      <ApolloReactComponents.Query<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables> query={AllStrapiProjectsDocument} {...props} />
+    );
+    
+
+/**
+ * __useAllStrapiProjectsQuery__
+ *
+ * To run a query within a React component, call `useAllStrapiProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllStrapiProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllStrapiProjectsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllStrapiProjectsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>) {
+        return ApolloReactHooks.useQuery<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>(AllStrapiProjectsDocument, baseOptions);
+      }
+export function useAllStrapiProjectsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>(AllStrapiProjectsDocument, baseOptions);
+        }
+export type AllStrapiProjectsQueryHookResult = ReturnType<typeof useAllStrapiProjectsQuery>;
+export type AllStrapiProjectsLazyQueryHookResult = ReturnType<typeof useAllStrapiProjectsLazyQuery>;
+export type AllStrapiProjectsQueryResult = ApolloReactCommon.QueryResult<AllStrapiProjectsQuery, AllStrapiProjectsQueryVariables>;
+export const AllStrapiAboutDocument = gql`
+    query allStrapiAbout {
+  allStrapiAbout {
+    nodes {
+      ...RegularStrapiAbout
+    }
+  }
+}
+    ${RegularStrapiAboutFragmentDoc}`;
+export type AllStrapiAboutComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>, 'query'>;
+
+    export const AllStrapiAboutComponent = (props: AllStrapiAboutComponentProps) => (
+      <ApolloReactComponents.Query<AllStrapiAboutQuery, AllStrapiAboutQueryVariables> query={AllStrapiAboutDocument} {...props} />
+    );
+    
+
+/**
+ * __useAllStrapiAboutQuery__
+ *
+ * To run a query within a React component, call `useAllStrapiAboutQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllStrapiAboutQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllStrapiAboutQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllStrapiAboutQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>) {
+        return ApolloReactHooks.useQuery<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>(AllStrapiAboutDocument, baseOptions);
+      }
+export function useAllStrapiAboutLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>(AllStrapiAboutDocument, baseOptions);
+        }
+export type AllStrapiAboutQueryHookResult = ReturnType<typeof useAllStrapiAboutQuery>;
+export type AllStrapiAboutLazyQueryHookResult = ReturnType<typeof useAllStrapiAboutLazyQuery>;
+export type AllStrapiAboutQueryResult = ApolloReactCommon.QueryResult<AllStrapiAboutQuery, AllStrapiAboutQueryVariables>;
 export const AllStrapiProjectsFeatureDocument = gql`
     query allStrapiProjectsFeature {
   allStrapiProjects(filter: {featured: {eq: true}}) {

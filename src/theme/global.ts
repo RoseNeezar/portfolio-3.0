@@ -16,6 +16,9 @@ export default createGlobalStyle`
       line-height: 1.5;
       font-size: 0.875rem;
       margin-top: 5rem;
+      ::-webkit-scrollbar {
+    display: none;
+}
     }
     ul {
       list-style-type: none;

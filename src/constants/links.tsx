@@ -1,5 +1,8 @@
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
+interface ILinks {
+  styleClass?: "nav-links" | "sidebar-links" | ""
+}
 const data = [
   {
     id: 1,
@@ -18,11 +21,6 @@ const data = [
   },
   {
     id: 4,
-    text: "blog",
-    url: "/blog/",
-  },
-  {
-    id: 5,
     text: "contact",
     url: "/contact/",
   },
@@ -37,10 +35,12 @@ const tempLinks = data.map(link => {
 })
 // I KNOW WE CAN COMBINE IT !!!!!
 
-export default ({ styleClass }: any) => {
+const links: FC<ILinks> = ({ styleClass }) => {
   return (
     <ul className={`page-links ${styleClass ? styleClass : ""}`}>
       {tempLinks}
     </ul>
   )
 }
+
+export default links

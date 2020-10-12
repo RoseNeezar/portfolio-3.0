@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react"
+import React, { FC, ReactNode, useState } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Hero from "../components/Hero"
@@ -7,22 +7,33 @@ import Jobs from "../components/Jobs"
 import Projects from "../components/Projects"
 import Blogs from "../components/Blogs"
 import { AllStrapiProjectsFeatureQuery } from "../generated/graphql"
+import { colorE } from "../constants/colorEnum"
+import SEO from "../components/SEO"
 
 interface PageData<D> {
   data: D
 }
 
-const Index: FC<PageData<AllStrapiProjectsFeatureQuery>> = (
-  data: PageData<AllStrapiProjectsFeatureQuery>
-) => {
-  const { allStrapiProjects: projects } = data.data
+const Index: FC<PageData<AllStrapiProjectsFeatureQuery>> = ({ data }) => {
+  const { allStrapiProjects: projects } = data
+
   return (
-    <Layout>
-      <Hero />
-      <Services />
-      <Jobs />
-      <Projects projects={projects.nodes} title="featured projects" showLink />
-    </Layout>
+    <>
+      <SEO
+        title="main page of portfolio"
+        description="overview portfolio site of rose neezar"
+      />
+      <Layout navColor={colorE.green}>
+        <Hero />
+        <Services />
+        <Jobs />
+        <Projects
+          projects={projects.nodes}
+          title="featured projects"
+          showLink
+        />
+      </Layout>
+    </>
   )
 }
 export default Index
