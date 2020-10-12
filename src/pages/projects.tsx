@@ -17,7 +17,7 @@ const ProjectsPage: FC<PageData<AllStrapiProjectsQuery>> = ({ data }) => {
   return (
     <>
       <SEO
-        title="project section of portfolio"
+        title="Rose Neezar | Projects"
         description="this showcase all of the projects rose neezar have done"
       />
       <Layout navColor={colorE.gray}>

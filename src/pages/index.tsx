@@ -20,7 +20,7 @@ const Index: FC<PageData<AllStrapiProjectsFeatureQuery>> = ({ data }) => {
   return (
     <>
       <SEO
-        title="main page of portfolio"
+        title="Rose Neezar | Home"
         description="overview portfolio site of rose neezar"
       />
       <Layout navColor={colorE.green}>

@@ -6,7 +6,7 @@ const contact = () => {
   return (
     <>
       <SEO
-        title="contact section of portfolio"
+        title="Rose Neezar | Contacts"
         description="get in touch , sent rose neezar a message"
       />
       <Layout>
