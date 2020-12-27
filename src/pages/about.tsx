@@ -36,7 +36,7 @@ const About: FC<PageData<AllStrapiAboutQuery>> = ({ data }) => {
     <>
       <SEO
         title="Rose Neezar | About"
-        description="this is a summary of rose neezar"
+        description="this is a summary of my profile"
       />
       <Layout navColor={colorE.gray}>
         <section className="about-page">

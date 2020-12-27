@@ -57,6 +57,7 @@ const NavHeader = styled.div`
   }
 `
 const NavButton = styled.button`
+background-color:plum;
   font-size: 2rem;
   background: transparent;
   border-color: transparent;
